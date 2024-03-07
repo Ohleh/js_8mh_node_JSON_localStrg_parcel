@@ -7,17 +7,21 @@ const curretTimePlayer = "videoplayer-current-time";
 
 player.on(
   "timeupdate",
-  throttle(function (data) {
-    console.log(data.seconds);
-    localStorage.setItem(curretTimePlayer, data.seconds);
-  }, 1000)
+  throttle((data) => currentTime(data), 1000)
 );
 
-console.log(localStorage.getItem(curretTimePlayer));
+function currentTime(data) {
+  console.log(data.seconds);
+  localStorage.setItem(curretTimePlayer, data.seconds);
+}
+
+const cuttentTimePlay = localStorage.getItem(curretTimePlayer) ?? 0;
 
 player
-  .setCurrentTime(localStorage.getItem(curretTimePlayer))
-  .then(function (seconds) {})
+  .setCurrentTime(cuttentTimePlay)
+  .then(function (seconds) {
+    console.log("prommise return", seconds);
+  })
   .catch(function (error) {
     switch (error.name) {
       case "RangeError":

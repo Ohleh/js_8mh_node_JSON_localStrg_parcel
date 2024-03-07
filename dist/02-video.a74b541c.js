@@ -510,12 +510,15 @@ var _lodashThrottle = require("lodash.throttle");
 var _lodashThrottleDefault = parcelHelpers.interopDefault(_lodashThrottle);
 const player = new (0, _playerDefault.default)("vimeo-player");
 const curretTimePlayer = "videoplayer-current-time";
-player.on("timeupdate", (0, _lodashThrottleDefault.default)(function(data) {
+player.on("timeupdate", (0, _lodashThrottleDefault.default)((data)=>currentTime(data), 1000));
+function currentTime(data) {
     console.log(data.seconds);
     localStorage.setItem(curretTimePlayer, data.seconds);
-}, 1000));
-console.log(localStorage.getItem(curretTimePlayer));
-player.setCurrentTime(localStorage.getItem(curretTimePlayer)).then(function(seconds) {}).catch(function(error) {
+}
+const cuttentTimePlay = localStorage.getItem(curretTimePlayer) ?? 0;
+player.setCurrentTime(cuttentTimePlay).then(function(seconds) {
+    console.log("prommise return", seconds);
+}).catch(function(error) {
     error.name;
 });
 
