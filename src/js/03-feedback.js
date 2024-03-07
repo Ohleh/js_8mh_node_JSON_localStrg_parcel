@@ -15,12 +15,6 @@ function onInput(e) {
   };
   const setDataStorage = JSON.stringify(userData);
   localStorage.setItem(userInfo, setDataStorage);
-
-  //   if (e.target.form.elements[2].type === "submit") {
-  //     localStorage.clear();
-  //     formRef.elements.email.value = "";
-  //     formRef.elements.message.value = "";
-  //   }
 }
 
 function checkStorage() {
